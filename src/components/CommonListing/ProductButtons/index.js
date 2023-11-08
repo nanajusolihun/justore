@@ -3,15 +3,13 @@
 import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import { GlobalContext } from "@/context";
 // import { addToCart } from "@/services/cart";
-// import { deleteAProduct } from "@/services/product";
+import { deleteAProduct } from "@/services/product";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { ButtonBG } from "@/components/Elements/Buttons";
 
-
 export default function ProductButton({ item }) {
-  const pathName = usePathname();
   const {
     setCurrentUpdatedProduct,
     setComponentLevelLoader,
@@ -19,13 +17,14 @@ export default function ProductButton({ item }) {
     user,
     showCartModal, setShowCartModal
   } = useContext(GlobalContext);
+  
   const router = useRouter();
+  const pathName = usePathname();
 
   const isAdminView = pathName.includes("admin-view");
 
   async function handleDeleteProduct(item) {
     setComponentLevelLoader({ loading: true, id: item._id });
-
     const res = await deleteAProduct(item._id);
 
     if (res.success) {
@@ -62,25 +61,26 @@ export default function ProductButton({ item }) {
   }
 }
 
-  return isAdminView ? (
-    <div className="flex gap-2 justify-between items-center ">
-      <ButtonBG
+  return isAdminView ? (  
+    <div className="flex flex-col gap-2 justify-center items-center ">
+      <div className="w-full">
+        <ButtonBG
         disabled={false}
-        variant="bg-gray-500"
-        hover="hover:bg-gray-600"
-        // onClick={() => {
-        //   setCurrentUpdatedProduct(item);
-        //   router.push("/admin-view/add-product");
-        // }}
+        onClick={() => {
+          setCurrentUpdatedProduct(item);
+          router.push("/admin-view/add-product");
+        }}
       >
         UPDATE
       </ButtonBG>
-      <ButtonBG
+      </div>
+      <div className="w-full">
+        <ButtonBG
         variant="bg-red-500"
         hover="hover:bg-red-600"
         ring="focus:bg-red-600"
         disabled={false}
-        // onClick={() => handleDeleteProduct(item)}
+        onClick={() => handleDeleteProduct(item)}
       >
         {componentLevelLoader &&
         componentLevelLoader.loading &&
@@ -94,6 +94,7 @@ export default function ProductButton({ item }) {
           "DELETE"
         )}
       </ButtonBG>
+      </div>      
     </div>
   ) : (
     <>

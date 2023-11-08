@@ -14,13 +14,13 @@ export default function CommonListing({ data }) {
   }, []);
   
   return (
-    <section className="bg-white py-10 sm:py-16">
+    <section className="bg-white py-6 sm:py-10">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8 ">
-        <div className="mt-6 p-2 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 lg:mt-10 bg-yellow-300">
+        <div className="mt-6 p-2 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 sm:gap-4 lg:mt-8">
           {data && data.length
             ? data.map((item, index) => (
                 <article 
-                  className="relative w-full p-2 flex flex-col overflow-hidden rounded-xl shadow-lg border cursor-pointe bg-green-300 hover:bg-slate-300" 
+                  className="relative w-full p-3 flex flex-col overflow-hidden rounded-xl shadow border cursor-pointe hover:bg-gray-50 hover:shadow-2xl hover:scale-105" 
                   key={index}
                 >
                   <ProductTile item={item} />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import { ButtonBG, ButtonOL } from "../Elements/Buttons";
 import { adminNavOptions, navOptions } from "@/utils";
 import { GlobalContext } from "@/context";
@@ -54,6 +54,14 @@ const Navbar = () => {
 
   const pathName = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    if (
+      pathName !== "/admin-view/add-product" &&
+      currentUpdatedProduct !== null
+    )
+      setCurrentUpdatedProduct(null);
+  }, [pathName]);
 
   function handleLogout() {
     setIsAuthUser(false);
