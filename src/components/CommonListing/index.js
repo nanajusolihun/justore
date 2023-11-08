@@ -20,7 +20,7 @@ export default function CommonListing({ data }) {
           {data && data.length
             ? data.map((item, index) => (
                 <article 
-                  className="relative w-full p-3 flex flex-col overflow-hidden rounded-xl shadow border cursor-pointe hover:bg-gray-50 hover:shadow-2xl hover:scale-105" 
+                  className=" cursor-pointer relative w-full p-3 flex flex-col overflow-hidden rounded-xl shadow border cursor-pointe hover:bg-gray-50 hover:shadow-2xl hover:scale-105" 
                   key={index}
                 >
                   <ProductTile item={item} />

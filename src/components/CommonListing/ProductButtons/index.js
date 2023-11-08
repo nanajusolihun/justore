@@ -99,6 +99,7 @@ export default function ProductButton({ item }) {
   ) : (
     <>
       <ButtonBG
+        disabled={false}
         // onClick={() => handleAddToCart(item)}
       >
         {componentLevelLoader &&
