@@ -2,10 +2,11 @@
 
 import { ButtonBG } from "@/components/Elements/Buttons";
 import InputComponent from "@/components/FormElements/InputComponent";
-import { loginFormControls } from "@/utils";
-import Link from "next/link";
+import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import { useContext, useEffect, useState } from "react";
+import Link from "next/link";
 import { login } from "@/services/login";
+import { loginFormControls } from "@/utils";
 import { GlobalContext } from "@/context";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
@@ -98,7 +99,17 @@ const Login = () => {
                   disabled={!isValidForm()}
                   onClick={handleLogin}
                 >
-                  LOGIN
+                  {componentLevelLoader && componentLevelLoader.loading ? (
+                    <componentLevelLoader
+                      text={"Logging In"}
+                      color={"#fbbf24"}
+                      loading={
+                        componentLevelLoader && componentLevelLoader.loading
+                      }
+                    />
+                  ) : (
+                    "LOGIN"
+                  )}
                 </ButtonBG>
                 <div className="flex justify-center w-full gap-x-2">
                   <p className="text-black text-base ">Already Have an account?</p>

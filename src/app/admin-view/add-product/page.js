@@ -4,6 +4,9 @@ import { ButtonBG } from "@/components/Elements/Buttons";
 import InputComponent from "@/components/FormElements/InputComponent";
 import SelectComponent from "@/components/FormElements/SelectComponent";
 import TileComponent from "@/components/FormElements/TileComponent";
+import { GlobalContext } from "@/context";
+import Notification from "@/components/Notification";
+import { addNewProduct } from "@/services/product";
 import { AvailableSizes, adminAddProductformControls, firebaseConfig, firebaseStroageURL } from "@/utils";
 import { initializeApp } from "firebase/app";
 import {
@@ -12,7 +15,10 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { toast } from "react-toastify";
+import ComponentLevelLoader from "@/components/Loader/componentlevel";
+import { useRouter } from "next/navigation";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -61,8 +67,16 @@ const initialFormData = {
 
 export default function AdminAddNewProduct() {
   const [formData, setFormData] = useState(initialFormData);
-  
 
+  const {
+    componentLevelLoader,
+    setComponentLevelLoader,
+    currentUpdatedProduct,
+    setCurrentUpdatedProduct,
+  } = useContext(GlobalContext);
+
+  const router = useRouter();
+  
   // Handle Image
   async function handleImage (event) {
     const extractImageUrl = await helperForUPloadingImageToFirebase(
@@ -94,8 +108,28 @@ export default function AdminAddNewProduct() {
     });
   }
 
-  function handleAddProduct () {
-    console.log("handleAddProduct");
+  async function handleAddProduct () {
+    setComponentLevelLoader({ loading: true, id: "" });
+    const res = await addNewProduct(formData)
+
+    if (res.success) {
+      setComponentLevelLoader({ loading: false, id: "" });
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
+      setFormData(initialFormData);
+      // setCurrentUpdatedProduct(null);
+      setTimeout(() => {
+        router.push("/admin-view/all-products");
+      }, 1000);
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setFormData(initialFormData);
+    }
   }
 
   console.log(formData);
@@ -154,10 +188,19 @@ export default function AdminAddNewProduct() {
             onClick={handleAddProduct}
             disabled={false}
           >
-            ADD PRODUCT
+            {componentLevelLoader && componentLevelLoader.loading ? (
+              <ComponentLevelLoader
+                text={ "Adding Product"}
+                color={"#fbbf24"}
+                loading={componentLevelLoader && componentLevelLoader.loading}
+              />
+            ) : (
+              "ADD PRODUCT"
+            )}
           </ButtonBG>
         </div>
       </div>
+      <Notification />
     </div>
   )
 }

@@ -39,6 +39,8 @@ export default function GlobalState ({ children }) {
         setIsAuthUser,
         user,
         setUser,
+        componentLevelLoader,
+        setComponentLevelLoader,
       }}
     >
       {children}
