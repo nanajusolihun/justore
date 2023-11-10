@@ -7,6 +7,7 @@ import { GlobalContext } from "@/context";
 import CommonModal from "../CommonModal";
 import Cookies from "js-cookie";
 import { usePathname, useRouter } from "next/navigation";
+import CartModal from "../CartModal";
 
 
 function NavItems({ isModalView = false, isAdminView, router }) {
@@ -97,6 +98,7 @@ const Navbar = () => {
                 </ButtonBG>
                 <ButtonBG 
                   disabled={false}
+                  onClick={()=> setShowCartModal(true)}
                 >
                   Cart
                 </ButtonBG>
@@ -175,6 +177,7 @@ const Navbar = () => {
         show={showNavModal}
         setShow={setShowNavModal}
       />
+      {showCartModal && <CartModal />}
     </>
   );
 };

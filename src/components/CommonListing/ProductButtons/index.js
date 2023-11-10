@@ -2,7 +2,7 @@
 
 import ComponentLevelLoader from "@/components/Loader/componentlevel";
 import { GlobalContext } from "@/context";
-// import { addToCart } from "@/services/cart";
+import { addToCart } from "@/services/cart";
 import { deleteAProduct } from "@/services/product";
 import { usePathname, useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -100,7 +100,7 @@ export default function ProductButton({ item }) {
     <>
       <ButtonBG
         disabled={false}
-        // onClick={() => handleAddToCart(item)}
+        onClick={() => handleAddToCart(item)}
       >
         {componentLevelLoader &&
         componentLevelLoader.loading &&
