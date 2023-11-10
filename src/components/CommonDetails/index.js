@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 import ComponentLevelLoader from "../Loader/componentlevel";
 // import { addToCart } from "@/services/cart";
 import Notification from "../Notification";
+import FormatCurrency from "@/utils/currency";
+import { ButtonBG } from "../Elements/Buttons";
 
 export default function CommonDetails({ item }) {
   const {
@@ -37,7 +39,7 @@ export default function CommonDetails({ item }) {
 
   return (
     <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto">
         <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
           <div className="lg:col-span-3 lg:row-end-1">
             <div className="lg:flex lg:items-start">
@@ -80,26 +82,41 @@ export default function CommonDetails({ item }) {
             <h1 className="text-2xl font-bold text-gray-900">
               {item && item.name}
             </h1>
-            <div className="mt-10 flex flex-col items-center justify-between space-y-4 botder-t border-b py-4 sm:flex-row sm:space-y-0">
-              <div className="flex items-end">
-                <h1
-                  className={`text-3xl font-bold mr-2 ${
-                    item.onSale === "yes" ? "line-through" : ""
-                  }`}
-                >
-                  ${item && item.price}
-                </h1>
-                {item.onSale === "yes" ? (
-                  <h1 className="text-3xl font-bold text-red-700">{`$${(
-                    item.price -
-                    item.price * (item.priceDrop / 100)
-                  ).toFixed(2)}`}</h1>
-                ) : null}
-              </div>
-              <button
-                type="button"
-                // onClick={() => handleAddToCart(item)}
-                className="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium tracking-wide uppercase text-white"
+            <div className="my-2 py-2 flex flex-col items-center justify-between space-y-4 space-x-6 sm:flex-row sm:space-y-0">
+              <div className="flex justify-between gap-x-2 items-baseline">
+                {/* Prie Deal */}
+                <div >
+                  { item.onSale === "yes" ? (
+                    <p className="text-3xl font-semibold text-black">
+                      {`${FormatCurrency(item.price - item.price * (item.priceDrop / 100))}`}
+                    </p>
+                  ) : <p className="text-3xl font-semibold text-black">
+                      {`${FormatCurrency(item.price)}`}
+                    </p> }
+                </div>
+                {/* Price Sale and sale */}
+                <div className="flex items-center ">
+                  {
+                    item.onSale === "yes" 
+                    ? (
+                      <p className={`mr-3 text-base text-gray-400 ${item.onSale === "yes" ? "line-through" : ""}`}>
+                        {FormatCurrency(item.price)}
+                      </p>
+                    )
+                    : null
+                  }
+                  {item.onSale === "yes" ? (
+                    <p className="text-sm py-0 px-2 text-red-500 rounded-xl font-semibold bg-rose-200"
+                    >
+                      {`${item.priceDrop}%`}
+                    </p>
+                  ) : null}
+                </div>
+              </div>                                    
+            </div>
+            <div className="flex flex-col w-full border-b-2 pt-3 pb-5 mb-4  border-gray-200">
+              <ButtonBG
+                disabled={false}  
               >
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader
@@ -112,9 +129,9 @@ export default function CommonDetails({ item }) {
                 ) : (
                   "Add to Cart"
                 )}
-              </button>
-            </div>
-            <ul className="mt-8 space-y-2">
+              </ButtonBG> 
+            </div> 
+            <ul className="mt-6 space-y-2">
               <li className="flex items-center text-left text-sm font-medium text-gray-600">
                 {item && item.deliveryInfo}
               </li>
@@ -133,7 +150,7 @@ export default function CommonDetails({ item }) {
                   </a>
                 </nav>
               </div>
-              <div className="mt-8 flow-root sm:mt-12">
+              <div className="mt-6 flow-root sm:mt-12">
                 {item && item.description}
               </div>
             </div>

@@ -25,21 +25,28 @@ export default function ProductTile({ item }) {
       <div className="my-4 mx-auto flex w-full flex-col items-start justify-between">
         <div className="mb-2 flex flex-col">
           {/* Prie Deal */}
-          {item.onSale === "yes" ? (
-            <p className="text-lg font-semibold text-black">
-              {`${FormatCurrency(item.price - item.price * (item.priceDrop / 100))}`}
-            </p>
-          ) : null}
+          <div>
+            { item.onSale === "yes" ? (
+              <p className="text-lg font-semibold text-black">
+                {`${FormatCurrency(item.price - item.price * (item.priceDrop / 100))}`}
+              </p>
+            ) : <p className="text-lg font-semibold text-black">
+                {`${FormatCurrency(item.price)}`}
+              </p> }
+          </div>
           {/* Price Sale and sale */}
           <div className=" flex items-center ">
-            <p className={`mr-3 text-sm text-gray-400 ${
-                item.onSale === "yes" ? "line-through" : ""
-              }`}
-            >
-              {`${FormatCurrency(item.price)}`}
-            </p>
+            {
+              item.onSale === "yes" 
+              ? (
+                <p className={`mr-3 text-sm text-gray-400 ${item.onSale === "yes" ? "line-through" : ""}`}>
+                  {FormatCurrency(item.price)}
+                </p>
+              )
+              : null
+            }
             {item.onSale === "yes" ? (
-            <p className="text-sm py-0 px-1 text-red-500 rounded-xl font-semibold bg-rose-200"
+            <p className="text-sm py-0 px-2 text-red-500 rounded-xl font-semibold bg-rose-200"
             >
               {`${item.priceDrop}%`}
             </p>
