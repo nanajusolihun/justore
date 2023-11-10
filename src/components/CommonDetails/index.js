@@ -8,6 +8,8 @@ import ComponentLevelLoader from "../Loader/componentlevel";
 import Notification from "../Notification";
 import FormatCurrency from "@/utils/currency";
 import { ButtonBG } from "../Elements/Buttons";
+import { AiOutlineFieldTime } from "react-icons/ai";
+import { LiaShippingFastSolid } from "react-icons/lia";
 
 export default function CommonDetails({ item }) {
   const {
@@ -121,7 +123,7 @@ export default function CommonDetails({ item }) {
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader
                     text={"Adding to Cart"}
-                    color={"#ffffff"}
+                    color={"##fbbf24"}
                     loading={
                       componentLevelLoader && componentLevelLoader.loading
                     }
@@ -132,11 +134,11 @@ export default function CommonDetails({ item }) {
               </ButtonBG> 
             </div> 
             <ul className="mt-6 space-y-2">
-              <li className="flex items-center text-left text-sm font-medium text-gray-600">
-                {item && item.deliveryInfo}
+              <li className="flex items-center gap-x-2 text-left text-sm font-medium text-gray-600">
+                <LiaShippingFastSolid size={20} color="#3b82f6" /> {item && item.deliveryInfo}
               </li>
-              <li className="flex items-center text-left text-sm font-medium text-gray-600">
-                {"Cancel anytime"}
+              <li className="flex items-center gap-x-2 text-left text-sm font-medium text-gray-600">
+                <AiOutlineFieldTime size={20} color="#3b82f6" /> {"Cancel anytime"}
               </li>
             </ul>
             <div className="lg:col-span-3">
