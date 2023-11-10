@@ -88,7 +88,7 @@ export default function CommonCart({
                   <h1 className="font-bold text-lg">Your cart is Empty !</h1>
                 )}
               </div>
-              <div className="mt-6 border-t border-b py-2">
+              <div className="mt-6 border-t py-2">
                 <div className="flex items-center justify-between">
                   <p className="text-sm text-gray-400">Subtotal</p>
                   <p className="text-lg text-black font-medium">
