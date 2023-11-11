@@ -4,7 +4,7 @@ import { GlobalContext } from "@/context";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import ComponentLevelLoader from "../Loader/componentlevel";
-// import { addToCart } from "@/services/cart";
+import { addToCart } from "@/services/cart";
 import Notification from "../Notification";
 import FormatCurrency from "@/utils/currency";
 import { ButtonBG } from "../Elements/Buttons";
@@ -19,25 +19,25 @@ export default function CommonDetails({ item }) {
     setShowCartModal,
   } = useContext(GlobalContext);
 
-  // async function handleAddToCart(getItem) {
-  //   setComponentLevelLoader({ loading: true, id: "" });
+  async function handleAddToCart(getItem) {
+    setComponentLevelLoader({ loading: true, id: "" });
 
-  //   const res = await addToCart({ productID: getItem._id, userID: user._id });
+    const res = await addToCart({ productID: getItem._id, userID: user._id });
 
-  //   if (res.success) {
-  //     toast.success(res.message, {
-  //       position: toast.POSITION.TOP_RIGHT,
-  //     });
-  //     setComponentLevelLoader({ loading: false, id: "" });
-  //     setShowCartModal(true);
-  //   } else {
-  //     toast.error(res.message, {
-  //       position: toast.POSITION.TOP_RIGHT,
-  //     });
-  //     setComponentLevelLoader({ loading: false, id: "" });
-  //     setShowCartModal(true);
-  //   }
-  // }
+    if (res.success) {
+      toast.success(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    } else {
+      toast.error(res.message, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setComponentLevelLoader({ loading: false, id: "" });
+      setShowCartModal(true);
+    }
+  }
 
   return (
     <section className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -118,7 +118,8 @@ export default function CommonDetails({ item }) {
             </div>
             <div className="flex flex-col w-full border-b-2 pt-3 pb-5 mb-4  border-gray-200">
               <ButtonBG
-                disabled={false}  
+                disabled={false}
+                onClick={() => handleAddToCart(item)}  
               >
                 {componentLevelLoader && componentLevelLoader.loading ? (
                   <ComponentLevelLoader
@@ -129,7 +130,7 @@ export default function CommonDetails({ item }) {
                     }
                   />
                 ) : (
-                  "Add to Cart"
+                  "ADD TO CART"
                 )}
               </ButtonBG> 
             </div> 
