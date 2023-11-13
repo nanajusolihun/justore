@@ -93,6 +93,7 @@ const Navbar = () => {
               <Fragment>
                 <ButtonBG 
                   disabled={false}
+                  onClick={()=>router.push('/account')}
                 >
                   {user.name}
                 </ButtonBG>
