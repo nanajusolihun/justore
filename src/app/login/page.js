@@ -30,8 +30,6 @@ const Login = () => {
 
   const router = useRouter();
 
-  console.log("INII", formData);
-
     function isValidForm() {
     return formData &&
       formData.email &&
@@ -63,8 +61,6 @@ const Login = () => {
     }
     console.log("LOGIN");
   }
-
-  console.log(isAuthUser, user);
 
   useEffect(() => {
     if (isAuthUser) router.push("/");
