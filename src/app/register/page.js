@@ -42,7 +42,6 @@ const Register = () => {
   }
 
     async function handleRegisterOnSubmit() {
-      // setPageLevelLoader(true);
       const data = await registerNewUser(formData);
 
       if (data.success) {
@@ -59,8 +58,6 @@ const Register = () => {
         setPageLevelLoader(false);
         setFormData(initialFormData);
       }
-
-      console.log("INIIII", data);
     }
 
     useEffect(() => {
