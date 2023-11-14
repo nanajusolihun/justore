@@ -139,8 +139,6 @@ export default function AdminAddNewProduct() {
     }
   }
 
-  console.log(formData);
-
   return (
     <div className="w-full mt-5 mr-0 mb-0 ml-0 relative ">
       <div className="flex flex-col items-start justify-start p-10 bg-white shadow-2xl rounded-xl relative">
