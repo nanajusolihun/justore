@@ -23,7 +23,7 @@ export const addNewProduct = async (formData) => {
 
 export const getAllAdminProducts = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/admin/all-products", {
+    const res = await fetch("https://justore.vercel.app/api/admin/all-products", {
       method: "GET",
       cache: "no-store",
     });
@@ -75,7 +75,7 @@ export const deleteAProduct = async (id) => {
 
 export const productByCategory = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/admin/product-by-category?id=${id}`, {
+    const res = await fetch(`https://justore.vercel.app/api/admin/product-by-category?id=${id}`, {
       method: "GET",
       cache: "no-store",
     });
@@ -90,7 +90,7 @@ export const productByCategory = async (id) => {
 
 export const productById = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/admin/product-by-id?id=${id}`, {
+    const res = await fetch(`https://justore.vercel.app/api/admin/product-by-id?id=${id}`, {
       method: "GET",
       cache: "no-store",
     });
