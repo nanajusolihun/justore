@@ -1,7 +1,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const URL_DB = process.env.URL_DB;
 const API_KEY = process.env.API_KEY;
 const AUTH_DOMAIN = process.env.AUTH_DOMAIN;
