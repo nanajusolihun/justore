@@ -1,3 +1,14 @@
+import {
+  API_KEY,
+  AUTH_DOMAIN, 
+  PROJECT_ID, 
+  STROAGE_BUCKET,
+  MESSAGING_SENDER_ID,
+  APP_ID,
+  MEASUREMENT_ID,
+  YOUR_FIREBASE_STROAGE_URL,
+} from "@/config/index.js"
+
 export const navOptions = [
   {
     id: "home",
@@ -196,27 +207,17 @@ export const AvailableSizes = [
   },
 ];
 
-// export const firebaseConfig = {
-//   apiKey: "API_KEY",
-//   authDomain: "AUTH_DOMAIN",
-//   projectId: "PROJECT_ID",
-//   storageBucket: "STROAGE_BUCKET",
-//   messagingSenderId: "MESSAGING_SENDER_ID",
-//   appId: "APP_ID",
-//   measurementId: "MEASUREMENT_ID",
-// };
-
 export const firebaseConfig = {
-  apiKey: "AIzaSyBY0cy2UySMFtIqzz-SVm1puGUIn9IFzZw",
-  authDomain: "justore-2023.firebaseapp.com",
-  projectId: "justore-2023",
-  storageBucket: "justore-2023.appspot.com",
-  messagingSenderId: "47030735913",
-  appId: "1:47030735913:web:513911694683c4b9483838",
-  measurementId: "G-8H29SPB6T7",
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STROAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+  measurementId: MEASUREMENT_ID,
 };
 
-export const firebaseStroageURL = "gs://justore-2023.appspot.com";
+export const firebaseStroageURL = YOUR_FIREBASE_STROAGE_URL;
 
 export const addNewAddressFormControls = [
   {

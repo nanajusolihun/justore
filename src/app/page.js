@@ -82,11 +82,11 @@ export default function Home() {
               <ul className="grid grid-cols-2 gap-4">
                 {products && products.length
                   ? products
-                      .filter((item, index) => item.onSale === "yes")
+                      .filter((item) => item.onSale === "yes")
                       .splice(0, 2)
                       .map((productItem) => (
                         <li 
-                        key={productItem._id}
+                          key={productItem._id}
                           onClick={() => router.push(`/product/${productItem._id}`)} 
                           className="cursor-pointer shadow rounded-lg p-4 bg-gray-100" 
                         >

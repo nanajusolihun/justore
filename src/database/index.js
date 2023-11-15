@@ -1,3 +1,4 @@
+import { URL_DB } from "@/config";
 import mongoose from "mongoose";
 
 const configOptions = {
@@ -6,7 +7,7 @@ const configOptions = {
 };
 
 const connectToDB = async () => {
-  const connectionUrl = "mongodb+srv://jusolihun_nana:wCHow3OsjP50mRSM@cluster0.u5xs4ut.mongodb.net/justore";
+  const connectionUrl = URL_DB;
 
   mongoose
     .connect(connectionUrl, configOptions)
