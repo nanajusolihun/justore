@@ -24,7 +24,6 @@ export default function Home() {
     if (res.success) {
       setProducts(res.data);
     }
-    console.log("iniii", res);
   }
 
   useEffect(() => {

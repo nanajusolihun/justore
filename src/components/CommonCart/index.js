@@ -23,10 +23,10 @@ export default function CommonCart({
               <div className="flow-root">
                 {cartItems && cartItems.length ? (
                   <ul className="-my-8">
-                    {cartItems.map((cartItem) => (
+                    {cartItems.map((cartItem, index) => (
                       <li
                         className="flex-col flex space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
-                        key={cartItem.id}
+                        key={index}
                       >
                         <div className="shrink-0">
                           <img

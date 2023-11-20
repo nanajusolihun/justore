@@ -12,7 +12,7 @@ import { useContext, useEffect, useState } from "react";
 import { PulseLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import FormatCurrency from "@/utils/currency";
-import { PUBLISH_KEY } from "@/config";
+// import { PUBLISH_KEY } from "@/config";
 
 export default function Checkout() {
   const {
@@ -31,7 +31,7 @@ export default function Checkout() {
   const router = useRouter();
   const params = useSearchParams();
 
-  const publishableKey = PUBLISH_KEY;
+  const publishableKey = "pk_test_51OBqSuFI2EnGonhir8M9DX0atqyfe7bLv44PHL1O7LKSBmTJtF2HNpH9NBbNfaPzY3kk9liEmUt2VfDXVW440qYz00JAgD7Yty";
   const stripePromise = loadStripe(publishableKey);
 
   async function getAllAddresses() {
